@@ -9,12 +9,24 @@ from dotenv import load_dotenv
 
 
 def get_documents_from_jsonl(file="./data/conversations.json"):
-    """Reads a json file and returns list of Documents"""
-    with open(file=file, mode='r') as f:
-        conversations_dict = json.load(f.read())
-    # Build Document objects using fields of interest.
-    documents = [Document(text=item['conversation'],
-                          metadata={"conversation_id": item['conversation_id']})
-                 for
-                 item in conversations_dict]
-    return documents
+    """Reads a JSON file and returns a list of Documents"""
+    try:
+        with open(file, mode='r') as f:
+            conversations_dict = json.load(f)
+        # Build Document objects using fields of interest.
+        documents = [Document(text=item['conversation'],
+                              metadata={"conversation_id": item['conversation_id']})
+                     for item in conversations_dict]
+        return documents
+    except FileNotFoundError:
+        print(f"Error: The file {file} was not found.")
+        return []
+    except json.JSONDecodeError:
+        print(f"Error: Failed to decode JSON from the file {file}.")
+        return []
+
+
+# Example usage
+if __name__ == "__main__":
+    documents = get_documents_from_jsonl()
+print(documents)
