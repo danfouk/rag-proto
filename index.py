@@ -32,7 +32,7 @@ if __name__ == "__main__":
 print(documents)
 
 
-# Load .env file contents into env
+""" # Load .env file contents into env
 # ELASTIC_CLOUD_ID and ELASTIC_API_KEY are expected to be in the .env file.
 load_dotenv('.env')
 
@@ -44,4 +44,4 @@ es_vector_store = ElasticsearchStore(index_name="calls",
                                      es_url=os.getenv("ES_URL"),
                                      es_user=os.getenv("ELASTIC_USER"),
                                      es_password=os.getenv("ELASTIC_PASSWORD"),
-                                     es_api_key=os.getenv("ELASTIC_API_KEY"))
+                                     es_api_key=os.getenv("ELASTIC_API_KEY")) """
